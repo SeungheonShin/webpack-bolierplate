@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 const config = {
@@ -20,14 +21,7 @@ const config = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                        },
-                    },
-                ],
+                type: 'asset/resource',
             },
         ],
     },
@@ -36,7 +30,16 @@ const config = {
             template: path.join(__dirname, 'public/index.html'),
             filename: path.join(__dirname, 'dist/index.html'),
         }),
+        new CleanWebpackPlugin(),
     ],
+    resolve: {
+        extensions: ['.js', '.scss'],
+        alias: {
+            '@js': path.join(__dirname, 'src/js'),
+            '@scss': path.join(__dirname, 'src/scss'),
+            '@img': path.join(__dirname, 'src/img'),
+        },
+    },
 };
 
 module.exports = config;

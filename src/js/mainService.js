@@ -1,3 +1,6 @@
+import '@scss/mainService';
+import webpackIcon from '@img/webpack_icon.png';
+
 export default class MainService {
     constructor({ targetEl }) {
         this.targetEl = targetEl;
@@ -10,6 +13,6 @@ export default class MainService {
     }
 
     render(data) {
-        return `<span>${data}</span>`;
+        return `<span>${data}</span><br/><img src=${webpackIcon}></img>`;
     }
 }
